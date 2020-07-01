@@ -132,7 +132,10 @@ cardDetailPrinter = () => {
                            cardId = {saleItem.uId}
                            imgSrc = {saleItem.src}
                            cardTitle = {saleItem.title}
-                           cardText = {saleItem.description}
+                           cardText = {saleItem.status}
+                           cardText = {saleItem.status}
+                           cardCost = {saleItem.cost}
+                           cardLikes = {saleItem.likes}
                            onBuyClickItem = {this.cardBuyHandler}
                            CardDetail = {this.cardDetailHandler}
                        > 

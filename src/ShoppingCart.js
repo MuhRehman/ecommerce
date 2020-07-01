@@ -47,7 +47,7 @@ state ={
                      return   <tr>
                         <td scope="col">{buyItem.uId}</td>
                         <td scope="col">{buyItem.title}</td>
-                        <td scope="col">{buyItem.}</td>
+                        <td scope="col">{buyItem.description}</td>
                         <td scope="col">{buyItem.cost}</td>
                         </tr>
                    })
@@ -62,7 +62,7 @@ state ={
              ></DemoModal>
 
              <div onClick= {this.modalHandler} className="bg-primary mb-3 text-center p-2" >
-                <span class="badge badge-danger">12</span>
+            <span class="badge badge-danger">{this.props.count}</span>
                 <svg class="bi bi-cart-plus" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                 <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z"/>
