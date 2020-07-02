@@ -1,0 +1,1 @@
+/// will draw the footer of the app
