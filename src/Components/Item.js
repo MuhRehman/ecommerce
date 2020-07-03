@@ -8,7 +8,7 @@ class Item extends Component {
 state = {
     mode:{},
     onText:false,
-    descriptionText :"Show"
+    descriptionText :"Show More"
 };
     
 constructor(props){
@@ -34,7 +34,7 @@ textToggle = () => {
         return (
 
             <div className="col mt-3"
-             onClick={()=>{this.props.CardDetail(this.props.cardId)}} 
+             onClick={()=>{this.props.CardDetail(this.props.char_Id)}} 
              >
               <div   className="card"style={this.state.mode}
               onMouseEnter={()=>{this.setState({mode:this.Shadow})}}
@@ -42,32 +42,40 @@ textToggle = () => {
              >
   <img src={this.props.imgSrc} style={{height:"190px",margin:"auto",objectFit:"cover"}}
    className="card-img-top" alt="..."/>
-  <div className="card-body text-center">
+  <div className="p-3">
         <h5 className="card-title">{this.props.cardTitle}</h5>
         <div 
          onClick={
             (e)=>{  
                 e.stopPropagation();
-                this.setState({ descriptionText :this.state.descriptionText=="Show"? "Hide":"Show"})
+                this.setState({ descriptionText :this.state.descriptionText=="Show More"? "Hide":"Show More"})
                 }
         
             }
-         className="card-text text-danger"> 
-         <p style={{display:this.state.descriptionText=="Show"? "none":"block"}}> Description {this.props.cardText} </p>
+         className="card-text "> 
+         <div style={{display:this.state.descriptionText=="Show More"? "none":"block"}}>
+         <p >
+         Name : {this.props.cardText} </p>
+         <p className="card-text"><label>Nick Name :</label>{this.props.nickName}</p>
+        <p className="card-text">Status :{this.props.status}</p>
+        <p className="card-text"> DOB{this.props.birth}</p>
+        <p className="card-text">occupation :{this.props.occupation}</p>
+        <p className="card-text">{this.props.char_Id}</p>
+        <p className="card-text ">{this.props.cardCost}</p>
+        </div>
         <a style={{fontSize: "13px", textColor: "blue"}}
        
         >{this.state.descriptionText} </a>
         </div>
         
-        <p className="card-text">{this.props.cardText}</p>
-        <p className="card-text">{this.props.cardId}</p>
-        <p className="card-text ">{this.props.cardCost}</p>
+        {/* <p className="card-text">{this.props.cardText}</p> */}
+        
         <Stars likes={this.props.cardLikes}  ></Stars>
    
     <button onClick={
     (e)=>{
         e.stopPropagation();
-        this.props.onBuyClickItem(this.props.cardId);
+        this.props.onBuyClickItem(this.props.char_Id);
      
     }
     

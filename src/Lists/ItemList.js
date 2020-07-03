@@ -16,11 +16,11 @@ super(props);
 
     this.selectedItem = {};
 };
-cardBuyHandler = (cardId)=> {
+cardBuyHandler = (cardId1)=> {
 
    let modalContent = [];
 
-   modalContent = this.props.apiData.filter((product)=> product.uId === cardId  );
+   modalContent = this.props.apiData.filter((product)=> product.char_id === cardId1  );
 
 
    
@@ -30,13 +30,13 @@ cardBuyHandler = (cardId)=> {
 this.props.onBuyItem(modalContent[0]);
 
 }
-cardDetailHandler = (cardId) => { 
+cardDetailHandler = (char_id1) => { 
     let cardList =[];
+    console.log (char_id1);
 
-
-    cardList = this.props.apiData.filter((data)=> data.uId  === cardId );
+    cardList = this.props.apiData.filter((data)=> data.char_id  === char_id1 );
     this.selectedItem = cardList[0];
-    //  console.log(this.selectedItem.title);
+  
      this.setState({ showModal : true });
      
 }
@@ -56,10 +56,10 @@ buyNowHandler = (uId) => {
 cardDetailPrinter = () => {
     
      return <div className="ml-4 mt-2 mb-2">  
-         <img src={this.selectedItem.src} width="120px"/><br></br>
-         <strong>Title:</strong>  {this.selectedItem.title}<br></br>
-         <strong>Description:</strong>      {this.selectedItem.description} <br></br>
-         <strong>ID :</strong>       {this.selectedItem.uId} 
+         <img src={this.selectedItem.img} width="120px"/><br></br>
+         <strong>Name:</strong>  {this.selectedItem.name}<br></br>
+         <strong>Description:</strong>      {this.selectedItem.birth} <br></br>
+         <strong>ID :</strong>       {this.selectedItem.char_id} 
         </div>
 }
 
@@ -69,7 +69,7 @@ cardDetailPrinter = () => {
             <div className="container-fluid">
                 {/* <img src="images/card11.png" /> */}
                 {/* <h1> {this.modalContent.cardText}</h1> */}
-                <DemoModal appear={this.state.showModal} closeModal={this.state.showModal}
+                <DemoModal appear={this.state.showModal} closeModal={this.closeHandler}
                  content={this.cardDetailPrinter()}
                 header1={"Rehman"}
                 footer={<div>
@@ -83,24 +83,37 @@ cardDetailPrinter = () => {
                 </DemoModal>
             <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 row-cols-xl-6 mt-4">
 
-              {/* {console.log(this.props.apiData)} */}
+              {
+             
+                this.props.apiData.length == 0 ? 
+                <div style={{margin:"200px auto"}} class="d-flex  justify-content-center">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div> : ""
+            }
 
              {
+
+              
             this.props.apiData.map((saleItem)=>{
                        return    <Item
-                           cardId = {saleItem.uId}
-                           imgSrc = {saleItem.src}
-                           cardTitle = {saleItem.title}
-                        //    cardText = {saleItem.status}
-                           cardText = {saleItem.status}
+                           char_Id = {saleItem.char_id}
+                           imgSrc = {saleItem.img}
+                           cardTitle = {saleItem.name}
+                           nickName = {saleItem.nickname}
+                           status = {saleItem.status}
+                           birth = {saleItem.birthday}
+                           occupation = {saleItem.occupation}
+                           cardText = {saleItem.portrayed}
                            cardCost = {saleItem.cost}
-                           cardLikes = {saleItem.likes}
+                           cardLikes = {saleItem.portrayed}
                            onBuyClickItem = {this.cardBuyHandler}
                            CardDetail = {this.cardDetailHandler}
                        > 
                       </Item>
                  }  
-                )};
+                )}
             </div>
             </div>
         )

@@ -15,7 +15,10 @@ class componentName extends Component {
      <tr>   
                     {
                         Object.keys(this.props.rowHeader).map((item)=>{
-                            return   <th scope="col">{item}</th>
+                            return   <th scope="col">
+                                  {item.toLocaleUpperCase()}
+                                
+                                </th>
                         })
                   
                     }

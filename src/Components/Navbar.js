@@ -5,19 +5,24 @@ import {Link } from "react-router-dom";
 
 
 
+
 class Navbar extends Component {
     render () {
         return (
          
 
-      <nav className="navbar navbar-expand-lg  bg-primary">
+      <nav className="navbar navbar-expand-sm   bg-primary">
         <div className="container">
           <Link className="navbar-brand" to={"/sign-in"}> </Link>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link className="" to={"/products"}> <button className="btn btn-sm btn-primary mr-3"> Products</button></Link>
+                <Link className="" to={"/products1"}> <button className="btn btn-sm btn-primary mr-3"> Products</button></Link>
               </li>
+              <li className="nav-item">
+                <Link className="" to={"/products2"}><button className="btn btn-sm btn-primary">Products 2</button></Link>
+              </li>
+             
               <li className="nav-item">
                 <Link className="" to={"/sign-in"}> <button className="btn btn-sm btn-primary mr-3"> Login</button></Link>
               </li>
@@ -27,6 +32,13 @@ class Navbar extends Component {
               <li className="nav-item">
                 <Link className="" to={"/userinfo"}><button className="btn btn-sm btn-primary">User Info</button></Link>
               </li>
+              <li className="nav-item">
+                <Link className="" to={"/checkout"}><button className="btn btn-sm btn-primary">Check Out</button></Link>
+              </li>
+              <li className="nav-item">
+                {this.props.cart}
+              </li>
+             
             </ul>
           </div>
         </div>
