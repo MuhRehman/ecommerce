@@ -28,7 +28,7 @@ state ={
     render () {
 
         let halwa = this.props.modalData.map((item)=>{ 
-               console.log(item);
+            //    console.log(item);
                
             let row ={};
             row.char_id= item.char_id;

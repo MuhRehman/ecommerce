@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ItemList from '../Lists/ItemList'
+import QuoteList from '../Lists/QuoteList'
 import ShoppingCart from '../Lists/ShoppingCart'
 const axios = require('axios');
 
@@ -9,6 +9,8 @@ class Products extends Component {
     state = {
       apiContent : [],  
       shoppingCartItems : [], 
+    dataApi : {},
+    apiData : []
     };
     constructor(props) {
       super(props)
@@ -28,14 +30,18 @@ componentDidMount(){
 
 
   
-  axios.get('https://www.breakingbadapi.com/api/characters?limit=10&offset=10')
+  axios.get('https://www.breakingbadapi.com/api/quote?author=Jesse+Pinkman')
   .then((response)=> {
     // handle success
     let data = response.data;
+
+      // let objData = Object.keys(data);
+      
+      // console.log(data[0].quote);
    
      
-    // this.setState({apiContent: response.data});
-    this.setState({apiContent:data.map((item)=>{ item.src="logo192.png"; return item})}); 
+    this.setState({apiData:data});
+    // this.setState({apiContent:data.map((item)=>{ item  return item})}); 
 
 
     // let temp = this.state.apiContent;
@@ -52,32 +58,6 @@ componentDidMount(){
   }
 
 
-    // secondDogApiCall = () => {
-     
-   
-    //   axios.get('https://dog.ceo/api/breeds/image/random/100')
-    //   .then((response)=> {
-   
-    //     let dogImages = response.data.message;
-    //     let apitextContent = this.state.apiContent;
-    
-        
-         
-    //    this.setState({apiContent:apitextContent.map((item,index) => {
-
-    //           item.src = dogImages[index];
-    //           // console.log(cardContent);
-              
-    //           return item
-    //    })}); 
-    
-    //   })
-    //   .catch((error)=>{
-    //     // handle error
-    //     console.log(error);
-    //   })
-    //   ;
-    //   }
     
 
 
@@ -88,16 +68,13 @@ componentDidMount(){
           }
  
 
-
-       
-      
     
 
     render () {
         return (
-            <div>
+            <div className="container-fluid">
              
-            <ItemList      apiData={this.state.apiContent} onBuyItem={this.onBuy}></ItemList>
+            <QuoteList      apiData={this.state.apiData} onBuyItem={this.onBuy}></QuoteList>
             </div>
         )
     }

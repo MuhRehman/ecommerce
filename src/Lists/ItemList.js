@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import QuoteItem from '../Components/QuoteItem'   
 import Item from '../Components/Item'   
 import DemoModal from '../Components/DemoModal';
 
@@ -83,7 +84,7 @@ cardDetailPrinter = () => {
                 </DemoModal>
             <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 row-cols-xl-6 mt-4">
 
-              {
+              {/* {
              
                 this.props.apiData.length == 0 ? 
                 <div style={{margin:"200px auto"}} class="d-flex  justify-content-center">
@@ -91,7 +92,7 @@ cardDetailPrinter = () => {
                   <span class="sr-only">Loading...</span>
                 </div>
               </div> : ""
-            }
+            } */}
 
              {
 
