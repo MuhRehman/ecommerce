@@ -33,9 +33,8 @@ textToggle = () => {
     render () {
         return (
 
-            <div className="col mt-3"
-             onClick={()=>{this.props.CardDetail(this.props.char_Id)}} 
-             >
+            <div className="col mt-3"    
+             onClick={()=>{this.props.cardDetail(this.props.title)}}>
               <div   className="card"style={this.state.mode}
               onMouseEnter={()=>{this.setState({mode:this.Shadow})}}
               onMouseLeave={()=>{this.setState({mode:this.NoShadow})}}
@@ -44,6 +43,7 @@ textToggle = () => {
   <div className="p-3">
         <h5>{this.props.quote}</h5>
         <p>{this.props.title}</p>
+        <p>{this.props.cardDetail}</p>
      
   </div>
 </div>

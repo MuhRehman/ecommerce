@@ -6,7 +6,7 @@ import DemoModal from '../Components/DemoModal';
 
 class ItemList extends Component {
    state = {
-       showModal : false,
+       showModal : false
    };
 
 constructor(props){

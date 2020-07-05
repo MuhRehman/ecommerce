@@ -30,7 +30,7 @@ componentDidMount(){
 
 
   
-  axios.get('https://www.breakingbadapi.com/api/quote?author=Jesse+Pinkman')
+  axios.get('https://www.breakingbadapi.com/api/quotes')
   .then((response)=> {
     // handle success
     let data = response.data;
@@ -41,13 +41,7 @@ componentDidMount(){
    
      
     this.setState({apiData:data});
-    // this.setState({apiContent:data.map((item)=>{ item  return item})}); 
-
-
-    // let temp = this.state.apiContent;
-
-    // temp.push(response.data.message);
-    //   this.setState({apiContent: response.data.message});
+   
 
   })
   .catch((error)=>{
@@ -55,6 +49,7 @@ componentDidMount(){
     console.log(error);
   })
   ;
+  
   }
 
 
