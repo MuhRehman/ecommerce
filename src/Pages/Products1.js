@@ -21,8 +21,9 @@ componentDidMount(){
  
 // Make a request for a user with a given ID
  
-  
-  axios.get('https://www.breakingbadapi.com/api/characters?limit=10&offset=10')
+// https://www.breakingbadapi.com/api/characters
+  axios.get('https://www.breakingbadapi.com/api/characters')
+  // axios.get('https://www.breakingbadapi.com/api/characters?limit=10&offset=10')
   .then((response)=> {
     // handle success
     let data = response.data;

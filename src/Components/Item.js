@@ -34,7 +34,7 @@ render () {
     return (
 
         <div className="col mt-3"
-         onClick={()=>{this.props.CardDetail(this.props.char_Id)}} 
+         onClick={()=>{this.props.CardDetail(this.props.authorName)}} 
          >
           <div   className="card"style={this.state.mode}
           onMouseEnter={()=>{this.setState({mode:this.Shadow})}}
@@ -43,7 +43,7 @@ render () {
 <img src={this.props.imgSrc} style={{height:"190px",margin:"auto",objectFit:"cover"}}
 className="card-img-top" alt="..."/>
 <div className="p-3">
-    <h5 className="card-title">{this.props.cardTitle}</h5>
+    <h5 className="card-title">{this.props.authorName}</h5>
     <div 
      onClick={
         (e)=>{  

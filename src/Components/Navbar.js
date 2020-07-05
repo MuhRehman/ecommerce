@@ -17,10 +17,10 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link className="" to={"/products1"}> <button className="btn btn-sm btn-primary mr-3"> Products</button></Link>
+                <Link className="" to={"/products1"}> <button className="btn btn-sm btn-primary mr-3">Actors</button></Link>
               </li>
               <li className="nav-item">
-                <Link className="" to={"/products2"}><button className="btn btn-sm btn-primary">Products 2</button></Link>
+                <Link className="" to={"/products2"}><button className="btn btn-sm btn-primary">Quotes</button></Link>
               </li>
              
               <li className="nav-item">

@@ -43,7 +43,7 @@ class Quotlist extends Component {
                     //  this.category = item.category;
  
 
-        //   console.log(response.data);
+          console.log(response.data);
               
 
                 // return console.log();
@@ -69,6 +69,8 @@ class Quotlist extends Component {
     printDetail = () => {
        
  return this.state.quoteApiData.map((item) => {
+     console.log(item);
+     
     return   <div className="ml-4 mt-2 mb-2">  
     <img src={item.img} width="120px"/><br></br>
     <strong>Author Name : </strong>{item.name}<br></br>
@@ -77,7 +79,8 @@ class Quotlist extends Component {
     <strong>Status : </strong>{item.status}<br></br>
     <strong>Nick Name : </strong>{item.nickname}<br></br>
     <strong>Portrayed : </strong>{item.portrayed}<br></br>
-    <strong>Catrgory : </strong>{item.category}<br></br>
+    <strong>Category : </strong>{item.category}<br></br>
+    <strong>Qoute : </strong>{item.category}<br></br>
    
    </div>
     })
