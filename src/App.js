@@ -6,6 +6,7 @@ import Login from "./Pages/Login";
 import SignUp  from "./Pages/SignUp";
 import ShoppingCart from "./Lists/ShoppingCart";
 import Products1 from "./Pages/Products1";
+import CreateItem from "./Pages/CreateItem";
 import Products2 from "./Pages/Products2";
 import UserInfo from "./Pages/UserInfo";
 import ItemList from './Lists/ItemList';
@@ -36,7 +37,7 @@ class App extends Component {
 
   this.cookies = new Cookies();
 
-  console.log("App ka constructor");
+  // console.log("App ka constructor");
 
    
   }
@@ -45,7 +46,7 @@ componentDidMount () {
 
   //// check if Application reloaded ... 
 
-  console.log("App ka didMount");
+  // console.log("App ka didMount");
 
   // if (this.cookies.get("shoppingCartItems") != null)
   // {
@@ -126,7 +127,7 @@ this.cookies.set("shoppingCartItems", temp);
 render ()
 {
 
-  console.log("app ka render");
+  // console.log("app ka render");
   return (
     <div>
     <Router>
@@ -151,6 +152,7 @@ render ()
 
 <Switch>
             <Route exact path='/'><Login></Login> </Route> 
+            <Route exact path='/createitem'>  <CreateItem />  </Route> 
             <Route exact path='/products1'>  <Products1 onBuy={this.onBuy} />  </Route> 
             <Route exact path='/products2'>  <Products2 onBuy={this.onBuy} />  </Route> 
             

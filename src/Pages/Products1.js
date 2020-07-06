@@ -16,14 +16,14 @@ class Products extends Component {
       super(props)
 
 
-      console.log("Product1 ka Constructor");
+      // console.log("Product1 ka Constructor");
 
     }
 
 
 componentDidMount(){
 
-  console.log("Product1 ka didMount");
+  // console.log("Product1 ka didMount");
  
 // Make a request for a user with a given ID
  
