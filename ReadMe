@@ -1,0 +1,16 @@
+
+to create a page  .... 
+
+to feed the API   ---- POST
+
+.... To feed the data
+
+    ... title : Tomatoes
+    ... Price:  25 pkr per Kilo
+    ....Picture: upload
+    .... description: "asdasdasdsada"
+
+Every post creates an Item in the db... after posting the form is ready to take another input.
+
+
+Consume the API ...... when you call your itemList. all the items in the db are displayed. .... purana item. purana itemsList

@@ -14,10 +14,16 @@ class Products extends Component {
     };
     constructor(props) {
       super(props)
+
+
+      console.log("Product1 ka Constructor");
+
     }
 
 
 componentDidMount(){
+
+  console.log("Product1 ka didMount");
  
 // Make a request for a user with a given ID
  
@@ -96,7 +102,7 @@ componentDidMount(){
 
 
 
-            <ItemList      apiData={this.state.apiContent} onBuyItem={this.onBuy}></ItemList>
+            <ItemList   apiData={this.state.apiContent} onBuyItem={this.onBuy}></ItemList>
             </div>
         )
     }

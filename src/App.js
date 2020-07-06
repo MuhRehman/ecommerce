@@ -36,6 +36,8 @@ class App extends Component {
 
   this.cookies = new Cookies();
 
+  console.log("App ka constructor");
+
    
   }
 
@@ -43,13 +45,15 @@ componentDidMount () {
 
   //// check if Application reloaded ... 
 
-  if (this.cookies.get("shoppingCartItems") != null)
-  {
+  console.log("App ka didMount");
+
+  // if (this.cookies.get("shoppingCartItems") != null)
+  // {
    
-    this.setState({shoppingCartItems: this.cookies.get("shoppingCartItems")});
+  //   this.setState({shoppingCartItems: this.cookies.get("shoppingCartItems")});
 
 
-  }
+  // }
 
   
   
@@ -121,6 +125,8 @@ this.cookies.set("shoppingCartItems", temp);
 
 render ()
 {
+
+  console.log("app ka render");
   return (
     <div>
     <Router>
