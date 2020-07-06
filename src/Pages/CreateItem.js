@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Button,Form,Col } from 'react-bootstrap';
+import { Button,Form,Col, Spinner } from 'react-bootstrap';
 
-class componentName extends Component {
+class CreateItem extends Component {
 
     state = {
         title : "",
@@ -11,38 +11,63 @@ class componentName extends Component {
         img : "",
         ready:false
     }
-     
-  
-    render () {
-        
-        
-        return (
-   <div>
-<Form
- noValidate
- validated ={this.state.ready} 
- onSubmit={
-    (e)=>{
+    
+    
+    postData =() =>{
+
+        //// post the data to the Api
+
+        const data = new FormData();
+        //data.append("source", "users-permissions"); // where is the model
+        data.append("ref", "dummies"); /// whats the name of the model
+        data.append("field", "fileList"); /// Whats the name of the field
+        data.append("refId", "5ee780173779f62777ab9de2"); /// Whats the name of the record
+        data.append("files", file); /// what are the files- Blob
+
+        axios({
+            method: "post",
+            url: "https://mangakure.com/dummies",
+            data }).then(success).catch(fail);   
+
+        this.setState({isLoading:false});
+
+    }
+
+
+
+
+
+
+    onSubmit =(e)=>{
         e.preventDefault();
         ///// verify that all the inputs are valid  .... VALIDATION ... 
         this.setState({ready:true});
 
         let form = e.currentTarget; 
 
-      console.log(form.checkValidity());
-
-
-        //// if all goood .... /// post the data to the Api
-        
-        /// display a spinner while data is uploading.   //// Once uploaded.. reset the form
- 
-        //console.log(this.state);
-        
-
+      if (form.checkValidity()){
+      console.log("good to go");
+      this.postData();               //// if all goood .... /// post the data to the Api
+      this.setState({isLoading:true});   /// display a spinner while data is uploading.   //// Once uploaded.. reset the form
+      }
+      
     }
-} 
 
-style={{      
+  
+    render () {
+        
+      if(this.state.isLoading ==true)
+      return <Spinner  animation="grow"
+      size={"lg"}
+      variant="primary"></Spinner>;
+        
+        return (
+   <div>
+<Form
+ noValidate
+ validated ={this.state.ready} 
+ onSubmit={this.onSubmit}
+ style={{      
                width: "450px",
                margin: "auto",
               
@@ -56,7 +81,7 @@ style={{
   
     <Form.Group  controlId="formGridEmail">
       <Form.Label>Title <span style={{color:"red"}}>*</span></Form.Label>
-      <Form.Control minLength={3} maxLength={50} name="title" value={this.state.title} onChange={(e) => {this.setState({[e.target.name] : e.target.value})}} type="text" placeholder="Title" />
+      <Form.Control required minLength={3} maxLength={50} name="title" value={this.state.title} onChange={(e) => {this.setState({[e.target.name] : e.target.value})}} type="text" placeholder="Title" />
         <Form.Control.Feedback type="valid" > Very Good </Form.Control.Feedback>
         <Form.Control.Feedback type="invalid" > Value is required. Please input a Valid Title </Form.Control.Feedback>
             
@@ -125,4 +150,4 @@ style={{
     }
 }
 
-export default componentName
+export default CreateItem
