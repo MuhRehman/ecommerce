@@ -57,7 +57,7 @@ cardDetailHandler = (authorName) => {
     // let cardList =[];
 // console.log(authorName);
 
-authorName = authorName.slice(0,authorName.indexOf(" ")) + "+" + authorName.slice(authorName.indexOf(" ")+1)  ;
+  ;
 
 console.log(authorName)
 
@@ -161,15 +161,14 @@ modelContentPrinter = ()=> {
             this.props.apiData.map((saleItem)=>{
                        return    <Item
                            char_Id = {saleItem.char_id}
-                           imgSrc = {saleItem.img}
-                           authorName = {saleItem.name}
-                           nickName = {saleItem.nickname}
-                           status = {saleItem.status}
-                           birth = {saleItem.birthday}
-                           occupation = {saleItem.occupation}
-                           cardText = {saleItem.portrayed}
+                           imgSrc = {saleItem.src}
+                           cardTitle = {saleItem.title}
+                           id = {saleItem.uId}
+                       
+                           descriptionText = {saleItem.description}
+                          
                            cardCost = {saleItem.cost}
-                           cardLikes = {saleItem.portrayed}
+                           cardLikes = {saleItem.likes}
                            onBuyClickItem = {this.cardBuyHandler}
                            CardDetail = {this.cardDetailHandler}
                        > 

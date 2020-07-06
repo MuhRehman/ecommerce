@@ -13,25 +13,25 @@ class CreateItem extends Component {
     }
     
     
-    postData =() =>{
+    // postData =() =>{
 
-        //// post the data to the Api
+    //     //// post the data to the Api
 
-        const data = new FormData();
-        //data.append("source", "users-permissions"); // where is the model
-        data.append("ref", "dummies"); /// whats the name of the model
-        data.append("field", "fileList"); /// Whats the name of the field
-        data.append("refId", "5ee780173779f62777ab9de2"); /// Whats the name of the record
-        data.append("files", file); /// what are the files- Blob
+    //     const data = new FormData();
+    //     //data.append("source", "users-permissions"); // where is the model
+    //     data.append("ref", "dummies"); /// whats the name of the model
+    //     data.append("field", "fileList"); /// Whats the name of the field
+    //     data.append("refId", "5ee780173779f62777ab9de2"); /// Whats the name of the record
+    //     data.append("files", file); /// what are the files- Blob
 
-        axios({
-            method: "post",
-            url: "https://mangakure.com/dummies",
-            data }).then(success).catch(fail);   
+    //     axios({
+    //         method: "post",
+    //         url: "https://mangakure.com/dummies",
+    //         data }).then(success).catch(fail);   
 
-        this.setState({isLoading:false});
+    //     this.setState({isLoading:false});
 
-    }
+    // }
 
 
 

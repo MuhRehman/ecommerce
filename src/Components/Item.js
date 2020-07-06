@@ -40,7 +40,7 @@ render () {
           onMouseEnter={()=>{this.setState({mode:this.Shadow})}}
           onMouseLeave={()=>{this.setState({mode:this.NoShadow})}}
          >
-<img src={this.props.imgSrc} style={{height:"190px",margin:"auto",objectFit:"cover"}}
+<img src="logo192.png" style={{height:"190px",margin:"auto",objectFit:"cover"}}
 className="card-img-top" alt="..."/>
 <div className="p-3">
     <h5 className="card-title">{this.props.authorName}</h5>
@@ -53,14 +53,13 @@ className="card-img-top" alt="..."/>
     
         }
      className="card-text "> 
+     <p >{this.props.cardTitle} </p>
      <div style={{display:this.state.descriptionText=="Show More"? "none":"block"}}>
-     <p >
-     Name : {this.props.cardText} </p>
-     <p className="card-text"><label>Nick Name :</label>{this.props.nickName}</p>
-    <p className="card-text">Status :{this.props.status}</p>
-    <p className="card-text"> DOB{this.props.birth}</p>
-    <p className="card-text">occupation :{this.props.occupation}</p>
-    <p className="card-text">{this.props.char_Id}</p>
+     <p className="card-text"><label></label>{this.props.id}</p>
+    <p className="card-text">{this.props.status}</p>
+    <p className="card-text"> {this.props.birth}</p>
+    <p className="card-text">{this.props.descriptionText}</p>
+  
     <p className="card-text ">{this.props.cardCost}</p>
     </div>
     <a style={{fontSize: "13px", textColor: "blue"}}
