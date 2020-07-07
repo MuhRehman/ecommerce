@@ -1,5 +1,3 @@
-
-
 import React, { Component } from "react";
 import { Button, Form, Col, Spinner } from "react-bootstrap";
 import axios from "axios";
@@ -18,14 +16,13 @@ export default class AddItem extends Component {
       image: "",
       ready: false,
       isLoading: false,
-      alertAppear :false
+      alertAppear: false,
     };
-    
   }
 
   postData = () => {
     //// post the data to the Api
-  
+
     let fields = {};
 
     /////////// What are the Data fields
@@ -44,11 +41,8 @@ export default class AddItem extends Component {
     ////// Append the Data fields..
     formData.append("data", JSON.stringify(fields)); /// the second attribute strapi requires is "data" where we have all the dataFields
 
-     //files.image = {Blob} 
-     //data={data that we have collected}
-
-  
-
+    //files.image = {Blob}
+    //data={data that we have collected}
 
     axios({
       method: "post",
@@ -66,14 +60,19 @@ export default class AddItem extends Component {
           image: "",
           ready: false,
           isLoading: false,
-          alertMsg:"Record has been successfully created", alertType:"success", alertAppear:true
+          alertMsg: "Record has been successfully created",
+          alertType: "success",
+          alertAppear: true,
         });
-      /// display that record has been uploaded.
-   
+        /// display that record has been uploaded.
       })
       .catch((err) => {
-      
-       this.setState({isLoading:false, alertMsg: err.message, alertType:"danger", alertAppear:true});
+        this.setState({
+          isLoading: false,
+          alertMsg: err.message,
+          alertType: "danger",
+          alertAppear: true,
+        });
 
         ////  display the error msg
       });
@@ -96,7 +95,12 @@ export default class AddItem extends Component {
 
   render() {
     if (this.state.isLoading == true)
-      return <Spinner animation="grow" size={"lg"} variant="primary"></Spinner>;
+      return (
+        <center className="mt-4">
+          {" "}
+          <Spinner animation="grow" size={"lg"} variant="primary"></Spinner>
+        </center>
+      );
 
     return (
       <div>
@@ -115,11 +119,19 @@ export default class AddItem extends Component {
             borderRadius: "15px",
           }}
         >
-               
-
-       <Alert msg={this.state.alertMsg} seconds={5} type={this.state.alertType}
-   appear={this.state.alertAppear}
-   onDisappear={()=>{this.setState({alertAppear:false,alertMsg:"", alertType:""})}} ></Alert>
+          <Alert
+            msg={this.state.alertMsg}
+            seconds={5}
+            type={this.state.alertType}
+            appear={this.state.alertAppear}
+            onDisappear={() => {
+              this.setState({
+                alertAppear: false,
+                alertMsg: "",
+                alertType: "",
+              });
+            }}
+          ></Alert>
 
           {/* ///// whenever we call this component. it will display a message  
 
@@ -128,7 +140,6 @@ export default class AddItem extends Component {
           msg="Hello"
           seconds= {5}  /// if someone press X during the 5 seconds. it will close even before 5 seconds
            type= "success", */}
-
 
           <Form.Group controlId="formGridEmail">
             <Form.Label>
@@ -271,18 +282,9 @@ export default class AddItem extends Component {
 
           <Button className="mt-4" variant="primary" type="submit">
             Submit
-          </Button><br></br>
-          <Button className="mt-4" variant="primary" onClick={()=>{
-         this.setState({alertAppear : true})
-          }}>
-           Alert Display
           </Button>
         </Form>
       </div>
     );
   }
 }
-
-
-
-
