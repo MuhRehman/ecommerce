@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import QuoteItem from '../Components/QuoteItem';
-import DemoModal from '../Components/DemoModal';
+import QuoteItem from '../../Components/___deadComponents/QuoteItem';
+import DemoModal from '../../Components/DemoModal';
 const axios = require('axios');
 // import Item from '../Components/Item';
 class Quotlist extends Component {

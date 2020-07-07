@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 // import QuoteItem from '../Components/QuoteItem'   
 import Item from '../Components/Item'   
-import QuoteList from '../Lists/QuoteList'   
+import QuoteList from './___DeadList/QuoteList'   
 import DemoModal from '../Components/DemoModal';
+import ItemDetail from '../Components/ItemDetail';
 const axios = require('axios');
 
 class ItemList extends Component {
@@ -11,6 +12,7 @@ class ItemList extends Component {
        selectItem : [],
        collectionOfQuotes : [],
        isLoading: false,
+       modalData: [],
        msg :""
    };
 
@@ -39,43 +41,44 @@ componentDidMount ()
 
 
 
-cardBuyHandler = (cardId1)=> {
+onBuy = (id)=> {
 
    let modalContent = [];
 
-   modalContent = this.props.apiData.filter((product)=> product.char_id === cardId1  );
+   modalContent = this.props.apiData.filter((product)=> product.id === id  );
 
 
    
    
 // console.log(modalContent[0]);
 // this.setState({ showModal : true});
-this.props.onBuyItem(modalContent[0]);
+this.props.onBuy(modalContent[0]);
 
 }
-cardDetailHandler = (authorName) => { 
-    // let cardList =[];
-// console.log(authorName);
+onDetail = (id) => { 
 
-  ;
 
-console.log(authorName)
 
-this.setState({ showModal : true, isLoading:true }); 
 
+this.setState({ showModal : true, isLoading:false }); 
+
+let selectedContent = this.props.apiData.filter((item)=>item.id == id);
+this.setState({ modalData : selectedContent }); 
+    //  console.log(selectedContent);
+     
     // axios.get(`https://www.breakingbadapi.com/api/characters?name=${authorName}`)
-    axios.get(`https://www.breakingbadapi.com/api/quote?author=${authorName}`)
-    .then((response)=>{
-console.log(response.data);
+//     axios.get(`https://www.breakingbadapi.com/api/quote?author=${authorName}`)
+//     .then((response)=>{
+// console.log(response.data);
 
 
-this.setState({ collectionOfQuotes : response.data, isLoading:false } );
+// this.setState({ collectionOfQuotes : response.data, isLoading:false } );
 
-//   this.collectionOfQuotes = response.data;
-})
-.catch((error)=>{
-    console.log(error);    
-});
+// //   this.collectionOfQuotes = response.data;
+// })
+// .catch((error)=>{
+//     console.log(error);    
+// });
 
 // console.log(author);
 
@@ -100,16 +103,19 @@ buyNowHandler = (uId) => {
      
 }
     
-modelContentPrinter = ()=> {
-     console.log(this.state.collectionOfQuotes);
+// modelContentPrinter = ()=> {
+//     //  console.log(this.state.modalData);
 
-     return this.state.isLoading ==true? (<div class="d-flex justify-content-center">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-    </div> ) : this.state.collectionOfQuotes.length <=0? "there is no data available": <QuoteList apiData={this.state.collectionOfQuotes} ></QuoteList>
+//      return this.state.isLoading == true? (<div class="d-flex justify-content-center">
+//     <div class="spinner-border" role="status">
+//       <span class="sr-only">Loading...</span>
+//     </div>
+//     </div> )
+//      : this.state.modalData.length <=0 ? "there is no data available": 
+    
+    
 
-}
+// }
 
 
 
@@ -132,8 +138,7 @@ modelContentPrinter = ()=> {
                 {/* <img src="images/card11.png" /> */}
                 {/* <h1> {this.modalContent.cardText}</h1> */}
                 <DemoModal appear={this.state.showModal} closeModal={this.closeHandler}
-                 content={this.modelContentPrinter()}
-                header1={"Rehman"}
+                 content={<ItemDetail  product={this.state.modalData[0]} ></ItemDetail>}
                 footer={<div>
                 <button onClick={()=>{this.closeHandler()}} className="btn btn-primary"> Close</button>
                 <button onClick={()=>{this.buyNowHandler(this.selectedItem.uId)}} className="btn btn-primary ml-1"> Buy Now</button>
@@ -158,19 +163,12 @@ modelContentPrinter = ()=> {
              {
 
               
-            this.props.apiData.map((saleItem)=>{
+            this.props.apiData.map((product)=>{
                        return    <Item
-                           char_Id = {saleItem.char_id}
-                           imgSrc = {saleItem.src}
-                           cardTitle = {saleItem.title}
-                           id = {saleItem.uId}
-                       
-                           descriptionText = {saleItem.description}
-                          
-                           cardCost = {saleItem.cost}
-                           cardLikes = {saleItem.likes}
-                           onBuyClickItem = {this.cardBuyHandler}
-                           CardDetail = {this.cardDetailHandler}
+                        
+                           product= {product}     
+                           onBuy = {this.onBuy}
+                           onDetail = {this.onDetail}
                        > 
                       </Item>
                  }  

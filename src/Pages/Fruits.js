@@ -4,7 +4,7 @@ import ShoppingCart from '../Lists/ShoppingCart';
 
 const axios = require('axios');
 
-class Products extends Component {
+export default  class Vegetables extends Component {
 
 
     state = {
@@ -85,7 +85,6 @@ componentDidMount(){
 
 
 
-
     onBuy = (Item)=>{    
       ////// who calls this function  .... ITEM-LIST
       // console.log(Item);
@@ -103,12 +102,12 @@ componentDidMount(){
 
 
 
-            <ItemList   apiData={this.state.apiContent} onBuyItem={this.onBuy}></ItemList>
+            <ItemList   apiData={this.state.apiContent} onBuy={this.onBuy}></ItemList>
             </div>
         )
     }
 }
 
-export default Products
+
 
 

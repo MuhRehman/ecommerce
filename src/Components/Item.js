@@ -34,51 +34,26 @@ render () {
     return (
 
         <div className="col mt-3"
-         onClick={()=>{this.props.CardDetail(this.props.authorName)}} 
+         onClick={()=>{this.props.onDetail(this.props.product.id)}} 
          >
           <div   className="card"style={this.state.mode}
           onMouseEnter={()=>{this.setState({mode:this.Shadow})}}
           onMouseLeave={()=>{this.setState({mode:this.NoShadow})}}
          >
-<img src="logo192.png" style={{height:"190px",margin:"auto",objectFit:"cover"}}
+<img src={`https://mangakure.com/${this.props.product.image.url}`} style={{height:"190px",margin:"auto",objectFit:"cover"}}   //// explaination  udhaar/////
 className="card-img-top" alt="..."/>
 <div className="p-3">
-    <h5 className="card-title">{this.props.authorName}</h5>
-    <div 
-     onClick={
-        (e)=>{  
-            e.stopPropagation();
-            this.setState({ descriptionText :this.state.descriptionText=="Show More"? "Hide":"Show More"})
-            }
-    
-        }
-     className="card-text "> 
-     <p >{this.props.cardTitle} </p>
-     <div style={{display:this.state.descriptionText=="Show More"? "none":"block"}}>
-     <p className="card-text"><label></label>{this.props.id}</p>
-    <p className="card-text">{this.props.status}</p>
-    <p className="card-text"> {this.props.birth}</p>
-    <p className="card-text">{this.props.descriptionText}</p>
-  
-    <p className="card-text ">{this.props.cardCost}</p>
-    </div>
-    <a style={{fontSize: "13px", textColor: "blue"}}
-   
-    >{this.state.descriptionText} </a>
-    </div>
-    
-    {/* <p className="card-text">{this.props.cardText}</p> */}
-    
-    <Stars likes={this.props.cardLikes}  ></Stars>
+    <h5>{this.props.product.title} </h5>
+    <Stars likes={this.props.product.likes}  ></Stars>
+    {/* <p>{this.props.id} </p> */}
+    <p className="card-text ">Price: {this.props.product.price}{" "}{this.props.product.currency}{" per "}{this.props.product.unit} </p>
+    <p>{this.props.product.description} </p>
 
 <button onClick={
 (e)=>{
     e.stopPropagation();
-    this.props.onBuyClickItem(this.props.char_Id);
- 
+    this.props.onBuy(this.props.product.id);
 }
-
-
 } className="btn btn-sm btn-primary mt-3">Buy Now</button>
 </div>
 </div>

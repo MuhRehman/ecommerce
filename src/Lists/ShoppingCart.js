@@ -27,14 +27,14 @@ state ={
 
     render () {
 
-        let halwa = this.props.modalData.map((item)=>{ 
+        let cartItems = this.props.cartItems.map((item)=>{ 
             //    console.log(item);
                
             let row ={};
-            row.char_id= item.char_id;
-            row.name= item.name;
-            row.nickname = item.nickname;
-            row.birthday= item.birthday;
+            row.title= item.title;
+            row.UnitPrice = item.price;
+            row.Quantity = item.quantity;
+            row.total   = item.totalCost
             // row.totalCost = item.totalCost;
 
          
@@ -53,10 +53,10 @@ state ={
 
              <DemoModal 
              
-             className ={mystyles.modalDialog}
+
              appear={this.state.display}  closeModal={this.closeModalHandler} 
 
-             content={<SmartTable content={halwa} />}         
+             content={<SmartTable content={cartItems} />}         
              footer={
                 
                  <button onClick={this.closeModalHandler} className="btn bg-primary text-white ">Close</button>
@@ -66,7 +66,7 @@ state ={
             
             
             <div onClick= {this.modalHandler} style={{float:"right"}} className="bg-primary" >
-            <span class="badge badge-danger">{this.props.modalData.length}</span>
+            <span class="badge badge-danger">{this.props.cartItems.length}</span>
                 <svg class="bi bi-cart-plus" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                 <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z"/>

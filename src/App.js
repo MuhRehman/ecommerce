@@ -5,15 +5,18 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./Pages/Login";
 import SignUp  from "./Pages/SignUp";
 import ShoppingCart from "./Lists/ShoppingCart";
-import Products1 from "./Pages/Products1";
-import CreateItem from "./Pages/CreateItem";
-import Products2 from "./Pages/Products2";
+import Products1 from "./Pages/Vegetables";
+import CreateItem from "./Pages/AddItem";
+import Products2 from "./Pages/Fruits";
 import UserInfo from "./Pages/UserInfo";
 import ItemList from './Lists/ItemList';
 import Checkout from './Pages/Checkout';
-import PageCom from './Pages/Products1';
+import PageCom from './Pages/Vegetables';
 import Navbar from './Components/Navbar';
 import Cookies from  "universal-cookie";
+import Fruits from './Pages/Fruits';
+import Vegetables from './Pages/Vegetables';
+import AddItem from './Pages/AddItem';
 
 
 
@@ -77,7 +80,7 @@ onBuy=(Item)  =>{
   //  console.log(temp);
    
 ////1)  try to find if the item being clicked/bouhgt is already in the shopping cart ?
-let singleCartItem =  temp.filter((itemCart)=>  itemCart.char_id === Item.char_id)
+let singleCartItem =  temp.filter((itemCart)=>  itemCart.id === Item.id)
   
     
 if (singleCartItem[0]) {
@@ -87,7 +90,7 @@ if (singleCartItem[0]) {
 
 singleCartItem[0].quantity += 1;
 
-singleCartItem[0].totalCost = singleCartItem[0].cost * singleCartItem[0].quantity;
+singleCartItem[0].totalCost = singleCartItem[0].price * singleCartItem[0].quantity;
 //singleCartItem[0].cost += singleCartItem[0].cost;
 
 this.setState({shoppingCartItems : temp });  
@@ -106,7 +109,7 @@ this.cookies.set("shoppingCartItems", temp);
 //// 2) if the item is not already in the shopping cart then we want to push the item in the shopping cart
 //// with quantity attribute set to 1
 Item.quantity=1;
-Item.totalCost =Item.cost;
+Item.totalCost =Item.price;
 temp.push(Item);
 this.setState({shoppingCartItems : temp});
   /// also please update the cookie variable 
@@ -131,8 +134,7 @@ render ()
   return (
     <div>
     <Router>
-  <Navbar cart ={<ShoppingCart  modalData={this.state.shoppingCartItems}/>}  />
-
+  <Navbar cart ={<ShoppingCart  cartItems={this.state.shoppingCartItems}/>}  />
 
 
     {/*         
@@ -152,9 +154,9 @@ render ()
 
 <Switch>
             <Route exact path='/'><Login></Login> </Route> 
-            <Route exact path='/createitem'>  <CreateItem />  </Route> 
-            <Route exact path='/products1'>  <Products1 onBuy={this.onBuy} />  </Route> 
-            <Route exact path='/products2'>  <Products2 onBuy={this.onBuy} />  </Route> 
+            <Route exact path='/additem'>  <AddItem />  </Route> 
+            <Route exact path='/vegetables'>  <Vegetables onBuy={this.onBuy} />  </Route> 
+            <Route exact path='/fruits'>  <Fruits onBuy={this.onBuy} />  </Route> 
             
            
             <Route path="/sign-in"    > <Login></Login></Route> 

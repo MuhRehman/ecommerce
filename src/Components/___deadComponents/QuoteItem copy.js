@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
-import Stars from './Stars';
+import Stars from '../Stars';
 
 class Item extends Component {
 
