@@ -118,12 +118,101 @@ this.cookies.set("shoppingCartItems", temp);
 
 
 
+}
+
+
+
+onIncrease=(id)  =>{
+
+  let  temp = this.state.shoppingCartItems;
+    
+  //  console.log(temp);
    
+////1)  try to find if the item being clicked/bouhgt is already in the shopping cart ?
+let singleCartItem =  temp.filter((itemCart)=>  itemCart.id === id)
+  
+    
+if (singleCartItem[0]) {   /// for unexpected situations
+  
+
+singleCartItem[0].quantity += 1;
+
+singleCartItem[0].totalCost = singleCartItem[0].price * singleCartItem[0].quantity;
+//singleCartItem[0].cost += singleCartItem[0].cost;
+
+this.setState({shoppingCartItems : temp });  
+
+/// also please update the cookie variable 
+this.cookies.set("shoppingCartItems", temp);
+
+///// Javascript objects are by reference. ---- not by value /////
+
+
+}
+}
+onDecrease=(id)=>{
+
+
+  let  temp = this.state.shoppingCartItems;
+    
+let singleCartItem =  temp.filter((item)=> item.id == id)
+ 
+if (singleCartItem[0]) {   
+  
+
+  singleCartItem[0].quantity -= 1;
+
+  if(singleCartItem[0].quantity === 0) {
+    this.onDelete(id);
+    return 
+  }
+  
+  
+  singleCartItem[0].totalCost = singleCartItem[0].price * singleCartItem[0].quantity;
+  //singleCartItem[0].cost += singleCartItem[0].cost;
+    
+    
+  
+  this.setState({shoppingCartItems : temp });  
+  
+  /// also please update the cookie variable 
+  this.cookies.set("shoppingCartItems", temp);
+
+
+
+}
+}
+
+onDelete =(id)  =>{
+
+
+  let  temp = this.state.shoppingCartItems;
+    
+  //  console.log(temp);
+   
+////1)  try to find if the item being clicked/bouhgt is already in the shopping cart ?
+let newCartItems =  temp.filter((itemCart)=>  itemCart.id !== id)
+  
+
+
+
+this.setState({shoppingCartItems : newCartItems });  
+
+/// also please update the cookie variable 
+this.cookies.set("shoppingCartItems", newCartItems);
 
 
 
 
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -134,7 +223,7 @@ render ()
   return (
     <div>
     <Router>
-  <Navbar cart ={<ShoppingCart  cartItems={this.state.shoppingCartItems}/>}  />
+  <Navbar cart ={<ShoppingCart onIncrease= {this.onIncrease}  onDecrease= {this.onDecrease} onDelete={this.onDelete} cartItems={this.state.shoppingCartItems}/>}  />
 
 
     {/*         

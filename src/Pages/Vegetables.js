@@ -38,13 +38,10 @@ componentDidMount(){
    
      
     // this.setState({apiContent: response.data});
-    this.setState({apiContent:data.map((item)=>{ item.src="logo192.png"; return item})}); 
+    this.setState({apiContent:data.filter((item)=> item.category === "Vegetable")}); 
 
 
-    // let temp = this.state.apiContent;
-
-    // temp.push(response.data.message);
-    //   this.setState({apiContent: response.data.message});
+    
 
   })
   .catch((error)=>{
@@ -55,39 +52,14 @@ componentDidMount(){
   }
 
 
-    // secondDogApiCall = () => {
-     
-   
-    //   axios.get('https://dog.ceo/api/breeds/image/random/100')
-    //   .then((response)=> {
-   
-    //     let dogImages = response.data.message;
-    //     let apitextContent = this.state.apiContent;
+      
     
-        
-         
-    //    this.setState({apiContent:apitextContent.map((item,index) => {
-
-    //           item.src = dogImages[index];
-    //           // console.log(cardContent);
-              
-    //           return item
-    //    })}); 
-    
-    //   })
-    //   .catch((error)=>{
-    //     // handle error
-    //     console.log(error);
-    //   })
-    //   ;
-    //   }
     
 
 
 
     onBuy = (Item)=>{    
-      ////// who calls this function  .... ITEM-LIST
-      // console.log(Item);
+      
       
 
       this.props.onBuy(Item);

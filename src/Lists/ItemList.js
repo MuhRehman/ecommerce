@@ -95,11 +95,11 @@ closeHandler = () => {
      
 }
 
-buyNowHandler = (uId) => {
+buyNowHandler = (id) => {
 
-    this.cardBuyHandler(uId);
+    this.onBuy(id);
  
-     this.setState({ showModal : false });
+    
      
 }
     
@@ -137,11 +137,17 @@ buyNowHandler = (uId) => {
                 {/* Render count = {this.renderCount} */}
                 {/* <img src="images/card11.png" /> */}
                 {/* <h1> {this.modalContent.cardText}</h1> */}
-                <DemoModal appear={this.state.showModal} closeModal={this.closeHandler}
-                 content={<ItemDetail  product={this.state.modalData[0]} ></ItemDetail>}
+                <DemoModal  title={"Item Detail"} appear={this.state.showModal} closeModal={this.closeHandler}
+                 content={<ItemDetail  product={this.state.modalData[0]} onBuy={
+    ()=>{this.onBuy(this.state.modalData[0].id);
+     this.setState({ showModal : false });
+     }
+                 } ></ItemDetail>}
                 footer={<div>
                 <button onClick={()=>{this.closeHandler()}} className="btn btn-primary"> Close</button>
-                <button onClick={()=>{this.buyNowHandler(this.selectedItem.uId)}} className="btn btn-primary ml-1"> Buy Now</button>
+                <button onClick={()=>{this.onBuy(this.state.modalData[0].id);
+                                   this.setState({ showModal : false });
+                }} className="btn btn-primary ml-1"> Buy Now</button>
                 </div>
                  }
                 >

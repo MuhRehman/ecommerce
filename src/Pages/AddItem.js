@@ -3,22 +3,34 @@ import { Button, Form, Col, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Alert from "../Components/Alert";
 
+
 export default class AddItem extends Component {
+  state={};
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state=this.stateReset();
+  }
+
+
+  stateReset = () => {
+    return {
       title: "",
       price: "150",
       currency: "Rs",
       unit: "Kg",
+      category: "Fruits",
       description: "",
       image: "",
       ready: false,
       isLoading: false,
-      alertAppear: false,
-    };
-  }
+      alertAppear:false,
+      alertType:"",
+      alertMsg:""
+
+
+         } 
+  } 
 
   postData = () => {
     //// post the data to the Api
@@ -31,6 +43,7 @@ export default class AddItem extends Component {
     fields["price"] = this.state.price;
     fields["unit"] = this.state.unit;
     fields["currency"] = this.state.currency;
+    fields["category"] = this.state.category;
 
     ///////////////////////
 
@@ -50,22 +63,18 @@ export default class AddItem extends Component {
       data: formData, ////// data is the attribute for Axios for whatever object to be posted.
     })
       .then((success) => {
-        console.log(success);
-        this.setState({
-          title: "",
-          price: "150",
-          currency: "Rs",
-          unit: "Kg",
-          description: "",
-          image: "",
-          ready: false,
-          isLoading: false,
-          alertMsg: "Record has been successfully created",
-          alertType: "success",
-          alertAppear: true,
-        });
+        
+        let newObj =this.stateReset();
+        
+        newObj.alertMsg ="Record has been successfully created";
+        newObj.alertType= "success";
+        newObj.alertAppear= true;
+        
+        this.setState(newObj);
+          
+        })
         /// display that record has been uploaded.
-      })
+      
       .catch((err) => {
         this.setState({
           isLoading: false,
@@ -84,9 +93,10 @@ export default class AddItem extends Component {
     this.setState({ ready: true });
 
     console.log(this.state.image);
+    console.log(this.state.state);
 
     let form = e.currentTarget;
-
+       
     if (form.checkValidity()) {
       this.setState({ isLoading: true }); /// display a spinner while data is uploading.   //// Once uploaded.. reset the form
       this.postData(); //// if all goood .... /// post the data to the Api
@@ -119,19 +129,7 @@ export default class AddItem extends Component {
             borderRadius: "15px",
           }}
         >
-          <Alert
-            msg={this.state.alertMsg}
-            seconds={5}
-            type={this.state.alertType}
-            appear={this.state.alertAppear}
-            onDisappear={() => {
-              this.setState({
-                alertAppear: false,
-                alertMsg: "",
-                alertType: "",
-              });
-            }}
-          ></Alert>
+         
 
           {/* ///// whenever we call this component. it will display a message  
 
@@ -142,6 +140,27 @@ export default class AddItem extends Component {
            type= "success", */}
 
           <Form.Group controlId="formGridEmail">
+          <Form.Group  controlId="formGridPassword">
+              <Form.Label>
+                Category <span style={{ color: "red" }}>*</span>
+              </Form.Label>
+
+              <Form.Control
+                required
+                as="select"
+                name="category"
+                value={this.state.category}
+                onChange={(e) => {
+                  this.setState({ [e.target.name]: e.target.value });
+                }}
+                type="text"
+                placeholder=""
+              >
+                <option  >Vegetable</option>
+                <option  >Fruits</option>
+                
+              </Form.Control>
+            </Form.Group>
             <Form.Label>
               Title <span style={{ color: "red" }}>*</span>
             </Form.Label>
@@ -166,7 +185,7 @@ export default class AddItem extends Component {
               Value is required. Please input a Valid Title{" "}
             </Form.Control.Feedback>
           </Form.Group>
-
+     
           <Form.Row>
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>
@@ -279,7 +298,19 @@ export default class AddItem extends Component {
               Please Upload a Picture of the Product{" "}
             </Form.Control.Feedback>
           </Form.Group>
-
+          <Alert
+            msg={this.state.alertMsg}
+            seconds={5}
+            type={this.state.alertType}
+            appear={this.state.alertAppear}
+            onDisappear={() => {
+              this.setState({
+                alertAppear: false,
+                alertMsg: "",
+                alertType: "",
+              });
+            }}
+          ></Alert>
           <Button className="mt-4" variant="primary" type="submit">
             Submit
           </Button>

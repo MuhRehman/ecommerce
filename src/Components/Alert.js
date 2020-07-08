@@ -26,9 +26,9 @@ export default class Alert extends Component {
         delay={this.props.seconds * 1000}
         autohide
         style={{
-          position: "absolute",
-          top: 60,
-          right: 0,
+          // position: "absolute",
+          // top: 60,
+          // right: 0,
           minWidth: "260px",
           backgroundColor: this.props.type,
         }}

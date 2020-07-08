@@ -38,7 +38,7 @@ componentDidMount(){
    
      
     // this.setState({apiContent: response.data});
-    this.setState({apiContent:data.map((item)=>{ item.src="logo192.png"; return item})}); 
+    this.setState({apiContent:data.filter((item)=> item.category === "Fruits")}); 
 
 
     // let temp = this.state.apiContent;

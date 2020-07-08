@@ -1,7 +1,7 @@
 //// Draw a single table row   ///////// Item  /////
 import React, { Component } from 'react'
 
-class componentName extends Component {
+class TableHead extends Component {
     render () {
         return (
          
@@ -12,7 +12,7 @@ class componentName extends Component {
               
             <thead>
                  
-     <tr>   
+<tr>
                     {
                         Object.keys(this.props.rowHeader).map((item)=>{
                             return   <th scope="col">
@@ -29,4 +29,4 @@ class componentName extends Component {
     }
 }
 
-export default componentName
+export default TableHead

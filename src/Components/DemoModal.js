@@ -13,7 +13,7 @@ class DemoModal extends Component {
   
   show={this.props.appear}  onHide={this.props.closeModal}  >
   <Modal.Header closeButton  >
-    <Modal.Title>Modal title</Modal.Title>
+    <Modal.Title>{this.props.title}</Modal.Title>
   </Modal.Header>
 
   <Modal.Body >

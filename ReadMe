@@ -14,3 +14,23 @@ Every post creates an Item in the db... after posting the form is ready to take 
 
 
 Consume the API ...... when you call your itemList. all the items in the db are displayed. .... purana item. purana itemsList
+
+
+//// User management ///
+
+
+1) User should be able to sign-up  and login ... default role is user.
+
+2) Signed in User can see his profile.
+
+3) System Administrator assigns the roles to different users. 
+
+
+We Need the following roles 
+
+1) Sys Admin : assigns roles to system users
+2) Salesman : enters data
+3) Sales Manager : verifies the data ... nothing unverified should be visible to users
+4) User: "shopping karta hey sala"
+5) Delivery: delivers the shopping items
+
