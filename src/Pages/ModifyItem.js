@@ -25,7 +25,7 @@ export default class ModifyItem extends Component {
       unit: "Kg",
       category: "Fruits",
       description: "",
-      image: "",
+      image: {},
       ready: false,
       isLoading: false,
       alertAppear:false,
@@ -70,9 +70,36 @@ export default class ModifyItem extends Component {
     const formData = new FormData(); /// create a new form Data
 
     //////////// Append the file or files.
+    
+    ////// aik tareeqa  ////  to skip the following statement if user input is empty.
+
+    if (this.state.image.url)
+    {
+      formData.append("data", JSON.stringify(fields)); /// the second attribute strapi requires is "data" where we have all the dataFields
+      
+    }
+  
+   else  
+
+   {
     formData.append("files.image", this.state.image, this.state.image.fileName); /// Strapi accepts files on "files.AttributeName"
     ////// Append the Data fields..
     formData.append("data", JSON.stringify(fields)); /// the second attribute strapi requires is "data" where we have all the dataFields
+    
+
+   }
+  
+    
+    ////// second method   //// to convert this.state.image into a blob ////
+
+
+
+    // const blob = new Blob(this.state.image);
+
+
+    // formData.append("files.image", blob, this.state.image.name); /// Strapi accepts files on "files.AttributeName"
+    // ////// Append the Data fields..
+    // formData.append("data", JSON.stringify(fields)); /// the second attribute strapi requires is "data" where we have all the dataFields
 
     //files.image = {Blob}
     //data={data that we have collected}
@@ -165,6 +192,9 @@ loadRecord = (id)=>{
       imageUrl: `https://mangakure.com/${selectedRecord[0].image.url}`
      
   });
+
+
+  console.log(selectedRecord[0].image.name)
 
 
 }
@@ -359,9 +389,9 @@ loadRecord = (id)=>{
                  }
             
             <Form.Control 
-              required
+              
               name="image"
-              //value={this.state.image.fileName}
+              //value={this.state.image.name}
               onChange={(e) => {
 
                 this.setState({ [e.target.name]: e.target.files[0], imageUrl: URL.createObjectURL(e.target.files[0]) });
