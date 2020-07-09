@@ -18,6 +18,7 @@ import Fruits from './Pages/Fruits';
 import Vegetables from './Pages/Vegetables';
 import AddItem from './Pages/AddItem';
 import ModifyItem from './Pages/ModifyItem';
+import VerifyItems from './Pages/VerifyItems';
 
 
 
@@ -254,6 +255,7 @@ render ()
             <Route path="/sign-up"  > <SignUp></SignUp></Route> 
             <Route path="/userinfo" > <UserInfo></UserInfo></Route> 
             <Route path="/checkout"  ><Checkout></Checkout></Route> 
+            <Route path="/verify"  ><VerifyItems></VerifyItems></Route> 
           </Switch>
 
 
