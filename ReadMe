@@ -16,6 +16,16 @@ Every post creates an Item in the db... after posting the form is ready to take 
 Consume the API ...... when you call your itemList. all the items in the db are displayed. .... purana item. purana itemsList
 
 
+///// Update the API ////
+
+1) Update the content of the items.
+
+
+2) Verify the contents.
+
+
+
+
 //// User management ///
 
 

@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import TableRow from "../Components/TableRow"
 import TableHead from "../Components/TableHead"
 
-class componentName extends Component {
+export default class SmartTable extends Component {
 
 
     render () {
@@ -21,15 +21,18 @@ class componentName extends Component {
 
                 <table className="table">
                     
-                
+                          { this.props.content.length != 0 ?     
                          <TableHead rowHeader={this.props.content[0]}></TableHead>
-                    
+                          :  ""
+                          
+                          
+                        }
                     
                 <tbody>
                    
                    {
                       this.props.content.map((rowContent)=>{
-                          return <TableRow rowData={rowContent}></TableRow>
+                          return <TableRow onModify={(id)=>{this.props.onModify(id)}} rowData={rowContent}></TableRow>
                       })          
                    
                     }
@@ -42,4 +45,3 @@ class componentName extends Component {
     }
 }
 
-export default componentName

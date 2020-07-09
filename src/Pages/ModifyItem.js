@@ -2,19 +2,23 @@ import React, { Component } from "react";
 import { Button, Form, Col, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Alert from "../Components/Alert";
+import SmartTable from "../Lists/SmartTable";
 
 
-export default class AddItem extends Component {
+export default class ModifyItem extends Component {
   state={};
   constructor(props) {
     super(props);
 
-    this.state=this.stateReset();
+    this.state= this.stateReset();
+    this.state.apiData=[];
+   
   }
 
 
   stateReset = () => {
     return {
+      id:"",
       title: "",
       price: "150",
       currency: "Rs",
@@ -27,18 +31,33 @@ export default class AddItem extends Component {
       alertAppear:false,
       alertType:"",
       alertMsg:"",
-      urlImage: ""
+      imageUrl:""
 
 
          } 
   } 
 
-  postData = () => {
+     componentDidMount () {
+ // Make a request for a user with a given ID
+  axios.get('https://mangakure.com/dummies')
+  .then((response)=>{
+    // handle success
+    // console.log(response.data);
+      this.setState({apiData :response.data});
+  })
+  .catch((error)=>{
+    // handle error
+    console.log(error);
+  })
+     }
+  
+  postDataForUpdate = () => {
     //// post the data to the Api
 
     let fields = {};
 
     /////////// What are the Data fields
+  // 
     fields["title"] = this.state.title;
     fields["description"] = this.state.description;
     fields["price"] = this.state.price;
@@ -59,17 +78,40 @@ export default class AddItem extends Component {
     //data={data that we have collected}
 
     axios({
-      method: "post",
-      url: "https://mangakure.com/dummies",
+      method: "put",
+      url: `https://mangakure.com/dummies/${this.state.id}`,
       data: formData, ////// data is the attribute for Axios for whatever object to be posted.
     })
       .then((success) => {
         
         let newObj =this.stateReset();
         
-        newObj.alertMsg ="Record has been successfully created";
+        newObj.alertMsg ="Record has been successfully Updated";
         newObj.alertType= "success";
         newObj.alertAppear= true;
+
+        ////// kuw na... apiData  .... sirf us record ko update kar den..
+
+        ////success.data //// updated object
+        
+        
+
+        newObj.apiData =this.state.apiData.map((item)=>{ 
+
+          if (item.id ===success.data.id)
+          return success.data;
+          else
+          return item;
+           });
+
+                
+        //// table ka data /// apiData
+
+
+        ///////////
+
+
+        console.log(success);    /////// update the table content ///
         
         this.setState(newObj);
           
@@ -88,21 +130,47 @@ export default class AddItem extends Component {
       });
   };
 
+
   onSubmit = (e) => {
     e.preventDefault();
     ///// verify that all the inputs are valid  .... VALIDATION ...
     this.setState({ ready: true });
 
-    console.log(this.state.image);
-    console.log(this.state.state);
+  
 
     let form = e.currentTarget;
        
     if (form.checkValidity()) {
       this.setState({ isLoading: true }); /// display a spinner while data is uploading.   //// Once uploaded.. reset the form
-      this.postData(); //// if all goood .... /// post the data to the Api
+      this.postDataForUpdate(); //// if all goood .... /// update the data to the Api
     }
   };
+
+
+loadRecord = (id)=>{
+  
+   let  selectedRecord = this.state.apiData.filter((item)=> item.id === id );
+      
+      
+
+  this.setState ({
+    id,
+    title: selectedRecord[0].title,
+      price: selectedRecord[0].price,
+      currency:selectedRecord[0].currency,
+      unit: selectedRecord[0].unit,
+      category: selectedRecord[0].category,
+      description: selectedRecord[0].description,
+      image: selectedRecord[0].image,
+      imageUrl: `https://mangakure.com/${selectedRecord[0].image.url}`
+     
+  });
+
+
+}
+
+
+
 
   render() {
     if (this.state.isLoading == true)
@@ -112,6 +180,9 @@ export default class AddItem extends Component {
           <Spinner animation="grow" size={"lg"} variant="primary"></Spinner>
         </center>
       );
+
+
+
 
     return (
       <div>
@@ -280,21 +351,21 @@ export default class AddItem extends Component {
             <Form.Label className={"form-label col-form-label"}>
               {" "}
               Item Picture{" "}
-            </Form.Label>
-                        
-                      {this.state.urlImage === "" ?  "":
-                      <img  className="form-control mb-2"  style={{height:"120px",margin:"auto",objectFit:"contain"}} 
-                      src={this.state.urlImage} ></img>
-                      }
-
-            <Form.Control
+            </Form.Label >
+                 {this.state.imageUrl !== "" ?
+                 <img  className="form-control mb-2"  style={{height:"120px",margin:"auto",objectFit:"contain"}} 
+                 src={this.state.imageUrl}></img>
+                 :"" 
+                 }
+            
+            <Form.Control 
               required
               name="image"
               //value={this.state.image.fileName}
-              
               onChange={(e) => {
-                this.setState({ [e.target.name]: e.target.files[0] , urlImage : URL.createObjectURL(e.target.files[0])  });
-              }}
+
+                this.setState({ [e.target.name]: e.target.files[0], imageUrl: URL.createObjectURL(e.target.files[0]) });
+              }}  
               type="file"
             />
             {/* <Form.Control required name="file" type="text" value={this.state.img} onChange={(e) => {this.setState({[e.target.name] : e.target.value})}} as="text" style={{display:"none"}} /> */}
@@ -319,10 +390,13 @@ export default class AddItem extends Component {
               });
             }}
           ></Alert>
-          <Button className="mt-4" variant="primary" type="submit">
-            Submit
+          <Button className="mt-4" variant="primary" type="submit" >
+            Save
           </Button>
         </Form>
+
+        <SmartTable onModify ={this.loadRecord}  content={this.state.apiData}></SmartTable>
+
       </div>
     );
   }

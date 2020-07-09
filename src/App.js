@@ -17,6 +17,7 @@ import Cookies from  "universal-cookie";
 import Fruits from './Pages/Fruits';
 import Vegetables from './Pages/Vegetables';
 import AddItem from './Pages/AddItem';
+import ModifyItem from './Pages/ModifyItem';
 
 
 
@@ -243,6 +244,7 @@ render ()
 
 <Switch>
             <Route exact path='/'><Login></Login> </Route> 
+            <Route exact path='/updateitem'>  <ModifyItem />  </Route> 
             <Route exact path='/additem'>  <AddItem />  </Route> 
             <Route exact path='/vegetables'>  <Vegetables onBuy={this.onBuy} />  </Route> 
             <Route exact path='/fruits'>  <Fruits onBuy={this.onBuy} />  </Route> 
