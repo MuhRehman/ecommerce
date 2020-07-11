@@ -30,7 +30,8 @@ class Item extends Component {
     return (
       <div
         className="col mt-3"
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           this.props.onSelect(this.props.product);
         }}
       >
@@ -61,7 +62,19 @@ class Item extends Component {
             </p>
             <p>{this.props.product.description} </p>
 
-            <button
+
+{this.props.verify? <div>
+               <button
+                onClick={(e)=>{
+                  e.stopPropagation()
+                  this.props.onAction("verify", this.props.product)}}
+                 className="btn btn-small btn-primary mr-2"> Verify </button>
+               <button className="btn btn-small btn-primary"
+                               onClick={(e)=>{
+                                e.stopPropagation(); 
+                                this.props.onAction("reject",this.props.product)}}
+               > Reject </button>
+            </div>:         <button
               onClick={(e) => {
                 e.stopPropagation();
                 this.context.onBuy(this.props.product);
@@ -69,7 +82,13 @@ class Item extends Component {
               className="btn btn-sm btn-primary mt-3"
             >
               Buy Now
-            </button>
+            </button> }
+
+
+
+            <div className="row">
+              {this.props.buttons}
+            </div>
           </div>
         </div>
       </div>

@@ -1,0 +1,29 @@
+pure function
+impure function
+
+this.eligbileAge =18;
+
+impure =(age)=>{
+
+if (age>this.eligbileAge)
+return true
+else false
+
+}
+
+
+impure(43); //// true // 35 // true
+
+impure(17) .... false    //// input..... is arguments ...... output .... returns.
+
+this.eligbileAge=10;
+
+impure(17) ... /// true
+
+
+
+context   //// How to use //
+
+
+//// when  to use ///
+

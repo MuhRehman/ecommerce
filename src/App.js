@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
-import ShoppingCart from "./Lists/ShoppingCart";
+import ShoppingCart from "./Components/ShoppingCart";
 import UserInfo from "./Pages/UserInfo";
 import Checkout from "./Pages/Checkout";
 import Navbar from "./Components/Navbar";
@@ -13,6 +13,7 @@ import Vegetables from "./Pages/Vegetables";
 import AddItem from "./Pages/AddItem";
 import ModifyItem from "./Pages/ModifyItem";
 import VerifyItems from "./Pages/VerifyItems";
+import RejectedItem from "./Pages/RejectedItem";
 import { AppContext } from "./Components/AppContext";
 
 class App extends Component {
@@ -32,7 +33,7 @@ class App extends Component {
     this.state.onDelete = this.onDelete;
     this.state.onDecrease = this.onDecrease;
 
-    // console.log("App ka constructor");
+    
   }
 
   componentDidMount() {
@@ -164,6 +165,10 @@ class App extends Component {
             <Route exact path="/updateitem">
               {" "}
               <ModifyItem />{" "}
+            </Route>
+            <Route exact path="/rejecteditem">
+              {" "}
+              <RejectedItem />{" "}
             </Route>
             <Route exact path="/additem">
               {" "}

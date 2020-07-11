@@ -32,7 +32,7 @@ componentDidMount(){
 
     // this.setState({apiContent: response.data});
 
-    let selectedItems = data.filter((item)=>  item.isVerified === false & item.isRejected === false  );
+    let selectedItems = data.filter((item)=>   item.isRejected === true  );
 
 
     this.setState({apiContent : selectedItems});
@@ -50,54 +50,6 @@ componentDidMount(){
 
 
   
-    onAction =(action, product)=>{   
-
-  
-      
-      if (action==="verify")
-      {
-          axios({
-            method: "put",
-            url: `https://mangakure.com/dummies/${product.id}`,
-            data: {isVerified:true} //formData, ////// data is the attribute for Axios for whatever object to be posted.
-          })
-            .then((success) => {
-                   
-             let newData = this.state.apiContent.filter((item) => item.id != success.data.id);
-      
-              this.setState({apiContent:newData});
-    
-            })
-      
-            .catch((err) => {
-              console.log(err);
-             ////  display the error msg
-            });
-      }
-
-      if (action==="reject")
-      {
-        console.log(product.id);
-        axios({
-        method: "put",
-        url: `https://mangakure.com/dummies/${product.id}`,
-        data: {isRejected:true} //formData, ////// data is the attribute for Axios for whatever object to be posted.
-      })
-        .then((success) => {
-               
-         let newData = this.state.apiContent.filter((item) => item.id != success.data.id);
-  
-          this.setState({apiContent:newData});
-          
-
-        })
-
-      }
-      
-      
-
-      
-    }
 
     render () {
         return (
@@ -110,7 +62,7 @@ componentDidMount(){
                 product={item}
                 onAction={this.onAction} 
                 onSelect={(item)=>{console.log(item);}}
-                verify
+               
                 />
                 )}
               

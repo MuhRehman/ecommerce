@@ -4,7 +4,7 @@
 //use smart Table .. to draw dummy tabular Data
 
 import React, { Component } from 'react'
-import SmartTable from '../Lists/SmartTable'
+import SmartTable from '../Components/SmartTable'
 class componentName extends Component {
     render () {
         let rows = [

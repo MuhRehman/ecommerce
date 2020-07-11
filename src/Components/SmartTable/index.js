@@ -1,8 +1,8 @@
 //// draw a table ////    item list
 
 import React, { Component } from 'react'
-import TableRow from "../Components/TableRow"
-import TableHead from "../Components/TableHead"
+import TableRow from "./TableRow"
+import TableHead from "./TableHead"
 
 export default class SmartTable extends Component {
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, Col, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Alert from "../Components/Alert";
-import SmartTable from "../Lists/SmartTable";
+import SmartTable from "../Components/SmartTable";
 import { AppContext } from "../Components/AppContext";
 
 export default class ModifyItem extends Component {

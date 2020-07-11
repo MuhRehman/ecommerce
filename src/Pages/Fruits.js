@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ItemList from '../Lists/ItemList'
-import ShoppingCart from '../Lists/ShoppingCart';
+import ItemList from '../Components/ItemList'
+
 
 const axios = require('axios');
 
@@ -38,7 +38,7 @@ componentDidMount(){
    
      
     // this.setState({apiContent: response.data});
-    this.setState({apiContent:data.filter((item)=> item.category === "Fruits")}); 
+    this.setState({apiContent:data.filter((item)=> item.category === "Fruits" & item.isVerified === true)}); 
 
 
     // let temp = this.state.apiContent;

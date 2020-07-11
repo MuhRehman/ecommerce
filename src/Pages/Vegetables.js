@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ItemList from "../Lists/ItemList";
+import ItemList from "../Components/ItemList";
 
 const axios = require("axios");
 
@@ -28,10 +28,10 @@ export default class Vegetables extends Component {
         // handle success
         let data = response.data;
         console.log(data);
-
+       
         // this.setState({apiContent: response.data});
         this.setState({
-          apiContent: data.filter((item) => item.category === "Vegetable"),
+          apiContent: data.filter((item) => item.category === "Vegetable" & item.isVerified === true),
         });
       })
       .catch((error) => {

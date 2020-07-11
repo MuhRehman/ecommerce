@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import SmartTable from "../Lists/SmartTable";
+import SmartTable from "./SmartTable";
 import DemoModal from "../Components/DemoModal";
 import mystyles from "../Components/mycss.css";
 import ShoppingCartItem from "../Components/ShoppingCartItem";
