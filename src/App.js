@@ -4,13 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import ShoppingCart from "./Lists/ShoppingCart";
-import Products1 from "./Pages/Vegetables";
-import CreateItem from "./Pages/AddItem";
-import Products2 from "./Pages/Fruits";
 import UserInfo from "./Pages/UserInfo";
-import ItemList from "./Lists/ItemList";
 import Checkout from "./Pages/Checkout";
-import PageCom from "./Pages/Vegetables";
 import Navbar from "./Components/Navbar";
 import Cookies from "universal-cookie";
 import Fruits from "./Pages/Fruits";
@@ -18,16 +13,24 @@ import Vegetables from "./Pages/Vegetables";
 import AddItem from "./Pages/AddItem";
 import ModifyItem from "./Pages/ModifyItem";
 import VerifyItems from "./Pages/VerifyItems";
-
-/////// Remove mangakure and dog apis.  rather load the actors API
+import { AppContext } from "./Components/AppContext";
 
 class App extends Component {
-  state = { shoppingCartItems: [] };
+  state = {
+    shoppingCartItems: [],
+    currentUser: {},
+    isLoggedIn: false,
+  };
 
   constructor(props) {
     super(props);
 
     this.cookies = new Cookies();
+
+    this.state.onBuy = this.onBuy;
+    this.state.onIncrease = this.onIncrease;
+    this.state.onDelete = this.onDelete;
+    this.state.onDecrease = this.onDecrease;
 
     // console.log("App ka constructor");
   }
@@ -150,32 +153,9 @@ class App extends Component {
   render() {
     // console.log("app ka render");
     return (
-      <div>
+      <AppContext.Provider value={this.state}>
         <Router>
-          <Navbar
-            cart={
-              <ShoppingCart
-                onIncrease={this.onIncrease}
-                onDecrease={this.onDecrease}
-                onDelete={this.onDelete}
-                cartItems={this.state.shoppingCartItems}
-              />
-            }
-          />
-
-          {/*         
-    
-      router - AppLayout component 
-            
-      <switch> 
-      all the pages are inside the switch Tag 
-
-      </switch>
-  
-        </appLayoutComponet>
-        </router>
-  
-    */}
+          <Navbar cart={<ShoppingCart />} />
 
           <Switch>
             <Route exact path="/">
@@ -191,7 +171,7 @@ class App extends Component {
             </Route>
             <Route exact path="/vegetables">
               {" "}
-              <Vegetables onBuy={this.onBuy} />{" "}
+              <Vegetables />{" "}
             </Route>
             <Route exact path="/fruits">
               {" "}
@@ -220,7 +200,7 @@ class App extends Component {
 
           {/* <PageCom></PageCom> */}
         </Router>
-      </div>
+      </AppContext.Provider>
     );
   }
 }

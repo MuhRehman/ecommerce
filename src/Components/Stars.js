@@ -2,17 +2,6 @@ import React, { Component } from "react";
 
 /////// how to Use  ////
 
-{
-  /*
-
-    <Stars
-        likes={4}     // print 4 golden stars 
-        outOf ={10}   // Number of total stars--- Optional prop.. if not provided --default value 5
-    />
-
-*/
-}
-
 export default class Stars extends Component {
   constructor(props) {
     super(props);

@@ -3,8 +3,10 @@ import { Button, Form, Col, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Alert from "../Components/Alert";
 import SmartTable from "../Lists/SmartTable";
+import { AppContext } from "../Components/AppContext";
 
 export default class ModifyItem extends Component {
+  static contextType = AppContext;
   state = {};
   constructor(props) {
     super(props);
@@ -33,6 +35,7 @@ export default class ModifyItem extends Component {
   };
 
   componentDidMount() {
+    console.log(this.context.shoppingCartItems);
     // Make a request for a user with a given ID
     axios
       .get("https://mangakure.com/dummies")
