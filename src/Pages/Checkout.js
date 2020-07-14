@@ -2,6 +2,7 @@
 
 
 import React, { Component } from 'react'
+import { isNumber } from 'lodash'
 
 class componentName extends Component {
     render () {
@@ -14,3 +15,7 @@ class componentName extends Component {
 }
 
 export default componentName
+
+
+
+

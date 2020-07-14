@@ -14,7 +14,9 @@ import AddItem from "./Pages/AddItem";
 import ModifyItem from "./Pages/ModifyItem";
 import VerifyItems from "./Pages/VerifyItems";
 import RejectedItem from "./Pages/RejectedItem";
+import Home from "./Pages/Home";
 import { AppContext } from "./Components/AppContext";
+import './assets/scss/style.scss';
 
 class App extends Component {
   state = {
@@ -159,6 +161,9 @@ class App extends Component {
           <Navbar cart={<ShoppingCart />} />
 
           <Switch>
+            <Route exact path="/">
+              <Home></Home>{" "}
+            </Route>
             <Route exact path="/">
               <Login></Login>{" "}
             </Route>
