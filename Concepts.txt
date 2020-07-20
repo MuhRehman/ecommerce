@@ -27,3 +27,15 @@ context   //// How to use //
 
 //// when  to use ///
 
+
+
+
+///////  Strapi End point for User registration
+
+"https://mangakure.com/auth/local/register"
+
+
+////// strapi End point for user Authentication
+
+ "https://mangakure.com/auth/local"
+

@@ -2,10 +2,67 @@
 
 
 import React, { Component } from 'react'
+import Form  from 'react-bootstrap/Form'
+import axios from "axios";
 
 class componentName extends Component {
+
+ state = {
+        validation : false,
+     }
+
+ postData = () => {
+   
+    let data = {username:this.state.username,FullName:this.state.FullName,password:this.state.password,email:this.state.email};
+    
+    axios({
+      method: "post",
+      url: "https://mangakure.com/auth/local/register",
+      data
+    })
+      .then((success) => {
+        
+        // let newObj =this.stateReset();
+        
+        // newObj.alertMsg ="Record has been successfully created";
+        // newObj.alertType= "success";
+        // newObj.alertAppear= true;
+        
+        // this.setState(newObj);
+
+        console.log(success);
+          
+        })
+        /// display that record has been uploaded.
+      
+      .catch((err) => {
+       
+
+        console.log(err);
+
+        ////  display the error msg
+      });
+  };
+
+
+
+
+
+onSubmit = (e) => {
+ 
+        e.preventDefault();
+        let form = e.currentTarget;
+
+        if (form.checkValidity())
+       this.postData();
+       
+        this.setState({ validation : true });
+}
+
     render () {
         return (
+           
+           
             <div className ="mt-3 mr-5" style={{
                
                 
@@ -18,35 +75,74 @@ class componentName extends Component {
                 borderRadius: "15px",
                            
               }}>
-            <form>
+            <Form  
+            noValidate 
+            validated = {this.state.validation}
+            
+
+            onSubmit={this.onSubmit}       
+                >
             <h3>Sign Up</h3>
 
             <div className="form-group">
-                <label>First name</label>
-                <input type="text" className="form-control" placeholder="First name" />
+                <label>Full Name</label>
+                <input type="text" required name="FullName" className="form-control" onChange={(e)=>{this.setState({[e.target.name] : e.target.value})}} placeholder="First name" />
+                <Form.Control.Feedback type="valid">
+   
+   Very Good
+ </Form.Control.Feedback>
+
+ <Form.Control.Feedback type="invalid">
+  First Name is mandatory
+ </Form.Control.Feedback>
             </div>
 
             <div className="form-group">
-                <label>Last name</label>
-                <input type="text" className="form-control" placeholder="Last name" />
+                <label>Username</label>
+                <input type="input" required className="form-control" name="username" onChange={(e)=>{this.setState({[e.target.name] : e.target.value})}} placeholder="Username" />
+                <Form.Control.Feedback type="valid">
+   
+   Very Good
+ </Form.Control.Feedback>
+
+ <Form.Control.Feedback type="invalid">
+  Last Name is mandatory
+ </Form.Control.Feedback>
             </div>
 
             <div className="form-group">
                 <label>Email address</label>
-                <input type="email" className="form-control" placeholder="Enter email" />
+                <input type="email" required className="form-control" name="email" onChange={(e)=>{this.setState({[e.target.name] : e.target.value})}} placeholder="Enter email" />
+                <Form.Control.Feedback type="valid">
+   
+   Very Good
+ </Form.Control.Feedback>
+
+ <Form.Control.Feedback type="invalid">
+  Username is mandatory
+ </Form.Control.Feedback>
             </div>
 
             <div className="form-group">
                 <label>Password</label>
-                <input type="password" className="form-control" placeholder="Enter password" />
+                <input type="password" required className="form-control" name="password" onChange={(e)=>{this.setState({[e.target.name] : e.target.value})}} placeholder="Enter password" />
+                <Form.Control.Feedback type="valid">
+   
+   Very Good
+ </Form.Control.Feedback>
+
+ <Form.Control.Feedback type="invalid">
+ Password is mandatory
+ </Form.Control.Feedback>
             </div>
 
-            <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+            <button type="submit"  className="btn btn-primary btn-block">Sign Up</button>
             <p className="forgot-password text-right">
-                Already registered <a href="#">sign in?</a>
+                Already registered <a href="sign-in">sign in?</a>
             </p>
-        </form>
+        </Form>
         </div>
+       
         )
     }
 }

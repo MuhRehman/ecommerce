@@ -162,6 +162,8 @@ export default class AddItem extends Component {
                 
               </Form.Control>
             </Form.Group>
+
+
             <Form.Label>
               Title <span style={{ color: "red" }}>*</span>
             </Form.Label>
@@ -185,6 +187,7 @@ export default class AddItem extends Component {
               {" "}
               Value is required. Please input a Valid Title{" "}
             </Form.Control.Feedback>
+         
           </Form.Group>
      
           <Form.Row>

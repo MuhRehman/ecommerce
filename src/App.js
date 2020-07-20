@@ -32,9 +32,26 @@ class App extends Component {
     this.state.onIncrease = this.onIncrease;
     this.state.onDelete = this.onDelete;
     this.state.onDecrease = this.onDecrease;
+    this.state.login= this.login;
 
     
   }
+
+
+  login =(user, jwt) =>{ 
+
+  if (user != null && jwt!=""){
+  this.setState ({currentUser:user, isLoggedIn:true});
+this.cookies.set("currentUser",user);
+this.cookies.set("jwt",jwt);
+
+  }
+
+  }
+
+
+
+
 
   componentDidMount() {
     //// check if Application reloaded ...
@@ -46,6 +63,15 @@ class App extends Component {
         shoppingCartItems: this.cookies.get("shoppingCartItems"),
       });
     }
+
+    if (this.cookies.get("currentUser") != null) {
+      this.setState({
+        currentUser: this.cookies.get("currentUser"), isLoggedIn:true
+      });
+    }
+
+
+
 
     ///if yes then populate the the shoppingcart state variable from cookies
   }
@@ -157,6 +183,7 @@ class App extends Component {
       <AppContext.Provider value={this.state}>
         <Router>
           <Navbar cart={<ShoppingCart />} />
+          {this.state.isLoggedIn==true? <div> <h1> Welcome. Mr. {this.state.currentUser.FullName} </h1>  </div>:""}
 
           <Switch>
             <Route exact path="/">
