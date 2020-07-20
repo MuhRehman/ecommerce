@@ -14,7 +14,9 @@ import AddItem from "./Pages/AddItem";
 import ModifyItem from "./Pages/ModifyItem";
 import VerifyItems from "./Pages/VerifyItems";
 import RejectedItem from "./Pages/RejectedItem";
+import Home from "./Pages/Home";
 import { AppContext } from "./Components/AppContext";
+import './assets/scss/style.scss';
 
 class App extends Component {
   state = {
@@ -186,6 +188,9 @@ this.cookies.set("jwt",jwt);
           {this.state.isLoggedIn==true? <div> <h1> Welcome. Mr. {this.state.currentUser.FullName} </h1>  </div>:""}
 
           <Switch>
+            <Route exact path="/">
+              <Home></Home>{" "}
+            </Route>
             <Route exact path="/">
               <Login></Login>{" "}
             </Route>

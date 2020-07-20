@@ -28,11 +28,13 @@ Consume the API ...... when you call your itemList. all the items in the db are 
 
 //// User management ///
 
+0) Prepare a landing page ----Home ---- Page level component  --- Landing
 
 1) User should be able to sign-up  and login ... default role is user.
 
 
 2) Signed in User can see his profile.
+
 
 3) System Administrator assigns the roles to different users. 
 
